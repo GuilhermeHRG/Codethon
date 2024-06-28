@@ -1,14 +1,18 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import Login from './pages/Login/Login'
-import Admin from './pages/Admin/Admin'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Admin from './pages/Admin/Admin';
+import NoticiaDetalhes from './pages/NoticiaDetalhes/NoticiaDetalhes';
+import NoticiasLocais from './pages/NoticiasLocais/NoticiasLocais'; 
+import ConteudoGostar from './pages/ConteudoGostar/ConteudoGostar';
 
 const routes = createBrowserRouter([
   { path: '/', element: <Home /> },
   { path: '/login', element: <Login /> },
   { path: '/admin', element: <Admin /> },
-])
+  { path: '/noticia/:id', element: <NoticiaDetalhes /> }
+]);
 
 export default function App() {
-  return <RouterProvider router={routes} />
+  return <RouterProvider router={routes} />;
 }
