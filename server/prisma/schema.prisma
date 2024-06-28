@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:rpYHqG@localhost:3306/codethon"
+}
+
+model categorias_news {
+  id   Int    @id @default(autoincrement())
+  nome String @unique(map: "nome") @db.VarChar(255)
+}
+
+model images_news {
+  id      Int     @id @default(autoincrement())
+  news_id Int?
+  url     String  @db.VarChar(255)
+  legenda String? @db.VarChar(255)
+  news    news?   @relation(fields: [news_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "images_news_ibfk_1")
+
+  @@index([news_id], map: "news_id")
+}
+
+model inscricoes_newsletter {
+  id             Int       @id @default(autoincrement())
+  user_id        Int?
+  email          String    @db.VarChar(255)
+  data_inscricao DateTime? @default(now()) @db.Timestamp(0)
+  users          users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "inscricoes_newsletter_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+model news {
+  id              Int              @id @default(autoincrement())
+  titulo          String           @db.VarChar(255)
+  autor_id        Int?
+  cidade          String?          @db.VarChar(255)
+  data_publicacao DateTime?        @default(now()) @db.Timestamp(0)
+  images_news     images_news[]
+  users           users?           @relation(fields: [autor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "news_ibfk_1")
+  paragraph_news  paragraph_news[]
+
+  @@index([autor_id], map: "autor_id")
+}
+
+model paragraph_news {
+  id       Int    @id @default(autoincrement())
+  news_id  Int?
+  conteudo String @db.Text
+  news     news?  @relation(fields: [news_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "paragraph_news_ibfk_1")
+
+  @@index([news_id], map: "news_id")
+}
+
+model users {
+  id                    Int                     @id @default(autoincrement())
+  email                 String                  @db.VarChar(255)
+  senha                 String                  @db.VarChar(255)
+  inscricoes_newsletter inscricoes_newsletter[]
+  news                  news[]
+}
