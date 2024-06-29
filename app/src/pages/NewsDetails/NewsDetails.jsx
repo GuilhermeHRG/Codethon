@@ -1,4 +1,3 @@
-// src/pages/NoticiaDetalhes/NoticiaDetalhes.jsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -114,7 +113,7 @@ const noticias = [
   },
 ];
 
-export default function NoticiaDetalhes() {
+export default function NewsDetails() {
   const { id } = useParams();
   const noticia = noticias.find((n) => n.id === parseInt(id));
 

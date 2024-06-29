@@ -8,22 +8,27 @@ datasource db {
 }
 
 model categorias_news {
-  id   Int    @id @default(autoincrement())
-  nome String @unique(map: "nome") @db.VarChar(255)
+  news_id      Int
+  categoria_id Int
+  news         news       @relation(fields: [news_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "categorias_news_ibfk_1")
+  categorias   categorias @relation(fields: [categoria_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "categorias_news_ibfk_2")
+
+  @@id([news_id, categoria_id])
+  @@index([categoria_id], map: "categoria_id")
 }
 
 model images_news {
-  id      Int     @id @default(autoincrement())
+  id      Int     @id
   news_id Int?
   url     String  @db.VarChar(255)
   legenda String? @db.VarChar(255)
-  news    news?   @relation(fields: [news_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "images_news_ibfk_1")
+  news    news?   @relation(fields: [news_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "images_news_ibfk_1")
 
   @@index([news_id], map: "news_id")
 }
 
 model inscricoes_newsletter {
-  id             Int       @id @default(autoincrement())
+  id             Int       @id
   user_id        Int?
   email          String    @db.VarChar(255)
   data_inscricao DateTime? @default(now()) @db.Timestamp(0)
@@ -33,31 +38,35 @@ model inscricoes_newsletter {
 }
 
 model news {
-  id              Int              @id @default(autoincrement())
-  titulo          String           @db.VarChar(255)
-  autor_id        Int?
-  cidade          String?          @db.VarChar(255)
-  data_publicacao DateTime?        @default(now()) @db.Timestamp(0)
+  id              Int               @id
+  titulo          String            @db.VarChar(255)
+  cidade          String            @db.VarChar(255)
+  autor           String            @db.VarChar(255)
+  data_publicacao DateTime?         @default(now()) @db.Timestamp(0)
+  categorias_news categorias_news[]
   images_news     images_news[]
-  users           users?           @relation(fields: [autor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "news_ibfk_1")
   paragraph_news  paragraph_news[]
-
-  @@index([autor_id], map: "autor_id")
 }
 
 model paragraph_news {
-  id       Int    @id @default(autoincrement())
+  id       Int    @id
   news_id  Int?
   conteudo String @db.Text
-  news     news?  @relation(fields: [news_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "paragraph_news_ibfk_1")
+  news     news?  @relation(fields: [news_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "paragraph_news_ibfk_1")
 
   @@index([news_id], map: "news_id")
 }
 
 model users {
-  id                    Int                     @id @default(autoincrement())
+  id                    Int                     @id
+  nome                  String                  @db.VarChar(255)
   email                 String                  @db.VarChar(255)
-  senha                 String                  @db.VarChar(255)
+  senha_hash            String                  @db.VarChar(255)
   inscricoes_newsletter inscricoes_newsletter[]
-  news                  news[]
+}
+
+model categorias {
+  id              Int               @id
+  nome            String            @unique(map: "nome") @db.VarChar(255)
+  categorias_news categorias_news[]
 }

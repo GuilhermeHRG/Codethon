@@ -1,12 +1,20 @@
-require('dotenv').config();
-const express = require('express');
-const routes = require('routes');
-
+const express = require("express");
 const app = express();
-const port = process.env.PORT || 5000;
+const newsRoutes = require("./routes/routes");
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 
-app.use('/api', routes);
+// Carregar variáveis de ambiente do arquivo .env
+dotenv.config();
 
-app.listen(port, () => {
-  console.log(`Servidor iniciado em http://localhost:${port}`);
+// Middlewares
+app.use(bodyParser.json());
+
+// Rotas
+app.use("/api", newsRoutes);
+
+// Iniciando o servidor
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

@@ -1,40 +1,40 @@
+const bcrypt = require('bcryptjs');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const bcrypt = require('bcrypt');
 
-// Função para realizar o login de um usuário
-const login = async (req, res) => {
+async function login(req, res, next) {
   const { email, senha } = req.body;
 
   try {
-    // Verifica se o usuário existe pelo e-mail
-    const user = await prisma.users.findUnique({
+    // Verificar se o usuário existe
+    const usuario = await prisma.users.findUnique({
       where: {
-        email: email.toLowerCase(), // Converter o email para minúsculas
+        email: email,
       },
     });
 
-    // Se o usuário não existir
-    if (!user) {
-      return res.status(404).json({ message: 'Usuário não encontrado' });
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
     }
 
-    // Verifica se a senha fornecida corresponde à senha armazenada (bcrypt)
-    const passwordMatch = await bcrypt.compare(senha, user.senha);
+    // Comparar a senha fornecida com a senha armazenada (hash)
+    const senhaCorreta = await bcrypt.compare(senha, usuario.senha_hash);
 
-    // Se as senhas não coincidirem
-    if (!passwordMatch) {
-      return res.status(401).json({ message: 'Credenciais inválidas' });
+    if (!senhaCorreta) {
+      return res.status(401).json({ error: 'Credenciais inválidas' });
     }
 
-    // Retorna os dados do usuário sem o campo 'senha'
-    const { senha: senhaOmitida, ...userData } = user;
-    res.json(userData);
+    // Login bem-sucedido
+    res.json({
+      id: usuario.id,
+      nome: usuario.nome,
+      email: usuario.email,
+    });
   } catch (error) {
-    console.error('Erro ao fazer login:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
+    console.error('Erro no login:', error);
+    next(error);
   }
-};
+}
 
 module.exports = {
   login,

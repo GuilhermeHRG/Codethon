@@ -1,22 +1,19 @@
 import React from 'react';
 import Button from "../../components/Button/Button";
-import NoticiasLocais from "../NoticiasLocais/NoticiasLocais";
-import ConteudoGostar from "../ConteudoGostar/ConteudoGostar";
-import Inscricao from "../Inscricao/Inscricao";
 import Weather from "./Weather"; // Adicione esta linha
+
+import Header from "../../components/Header/Header";
+import Banner from "../../components/Banner/Banner";
+import LocalNews from "../../components/LocalNews/LocalNews";
+import LikeContent from "../../components/LikeContent/LikeContent";
+import Newsletter from "../../components/Newsletter/Newsletter";
+import Footer from "../../components/Footer/Footer";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-[#3b82f6] text-white flex items-center justify-between px-4 py-2">
-        <div className="flex items-center">
-          <button className="mr-4">
-            <MenuIcon />
-          </button>
-          <h1 className="text-2xl font-bold">Explore Ivaí</h1>
-        </div>
-        <input type="search" placeholder="O que você procura?" className="max-w-xs rounded p-1" />
-      </header>
+      <Header />
+      <Banner />
       <main className="flex-1">
         <section className="relative">
           <div className="w-full h-[400px]">
@@ -33,41 +30,15 @@ export default function Home() {
             <Button className="mt-6 bg-blue-600 md:w-1/6 hover:bg-blue-700">Inscrever-se (Gratis)</Button>
           </div>
         </section>
-        <NoticiasLocais />
-        <ConteudoGostar />
-        <Inscricao />
+        
+        <LocalNews />
+        
+        <LikeContent />
+        
+        <Newsletter />
       </main>
-      <footer className="bg-[#3b82f6] text-white py-8 text-center">
-        <h2 className="text-2xl font-bold">Explore vale do ivaí</h2>
-        <div className="mt-4">
-          <p>Av. Brasil, 1250</p>
-          <p>(43) 99999-9999</p>
-          <p>exploreivai@gmail.com</p>
-        </div>
-        <p className="mt-4 text-sm">© 2024 Explore Vale do Ivaí. Todos os direitos reservados.</p>
-      </footer>
+      <Footer />
       <Weather /> {/* Adicione esta linha */}
     </div>
-  );
-}
-
-function MenuIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
   );
 }
