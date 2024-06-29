@@ -3,16 +3,20 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Admin from './pages/Admin/Admin';
 import NoticiaDetalhes from './pages/NoticiaDetalhes/NoticiaDetalhes';
-import NoticiasLocais from './pages/NoticiasLocais/NoticiasLocais'; 
-import ConteudoGostar from './pages/ConteudoGostar/ConteudoGostar';
+import PrivateRoute from './PrivateRoute/PrivateRoute'; // Ajuste o caminho conforme necessário
+import { AuthProvider } from './Auth/Auth'; // Ajuste o caminho conforme necessário
 
 const routes = createBrowserRouter([
   { path: '/', element: <Home /> },
   { path: '/login', element: <Login /> },
-  { path: '/admin', element: <Admin /> },
+  { path: '/admin', element: <PrivateRoute element={<Admin />} /> },
   { path: '/noticia/:id', element: <NoticiaDetalhes /> }
 ]);
 
 export default function App() {
-  return <RouterProvider router={routes} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={routes} />
+    </AuthProvider>
+  );
 }
