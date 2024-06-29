@@ -37,29 +37,26 @@ function Header() {
   return (
     <>
       <header
-        className={`fixed z-30 w-full bg-white  backdrop-blur-lg backdrop-filter transition-all duration-500 ${
+        className={`fixed z-30 w-full bg-white backdrop-blur-lg backdrop-filter shadow-lg transition-all duration-300 ${
           isHeaderVisible ? "top-0" : "-top-full"
         }`}
       >
-        <nav className="flex justify-between items-center py-3 px-4 md:px-8">
-          <picture className="flex flex-1 items-center gap-2">
-            <img
-              src={menu}
-              alt="Menu Hamburger"
-              className="w-10 h-10 cursor-pointer"
-              onClick={handleClick}
-            />
-            <p className="text-xl md:text-2xl font-medium">
+        <nav className="flex justify-between items-center py-4 px-6 md:px-10 lg:px-12">
+          <div className="flex items-center gap-4 md:gap-6">
+            
+            <Link to="/" className="text-xl md:text-2xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
               Explore Ivaí
-            </p>
-          </picture>
-
-          <div className="flex flex-1 justify-end">
-            <input
-              type="text"
-              placeholder="O que você procura?"
-              className="bg-gray-100 rounded-full py-3 px-6"
-            />
+            </Link>
+          </div>
+          <div className="">
+            <button
+              onClick={handleClick}
+              className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+                <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+              </svg>
+            </button>
           </div>
         </nav>
       </header>

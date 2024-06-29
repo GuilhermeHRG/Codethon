@@ -1,120 +1,63 @@
-import React, { useEffect } from "react";
+// src/components/Navigation/Navigation.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Navigation({ isOpen, onClose }) {
-  const translateClass = isOpen ? "translate-x-0" : "-translate-x-full";
-  const overlayClass = isOpen ? "opacity-75" : "opacity-0 pointer-events-none";
-
-  useEffect(() => {
-    if (isOpen) {
-      document.documentElement.classList.add("overflow-hidden");
-    } else {
-      document.documentElement.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      document.documentElement.classList.remove("overflow-hidden");
-    };
-  }, [isOpen]);
-
-  const handleOverlayClick = () => {
-    onClose();
-  };
-
-  const handleItemClick = () => {
-    onClose();
-  };
-
+const Navigation = ({ isOpen, onClose }) => {
   return (
-    <>
-      <div
-        className={`fixed inset-0 z-30 bg-black ${overlayClass} backdrop-blur-2xl backdrop-filter transition-opacity duration-1000 ease-in-out`}
-        onClick={handleOverlayClick}
-      />
-
-      <div
-        className={`fixed inset-y-0 left-0 z-40 flex w-full items-center justify-center bg-[#3b82f6] shadow-lg transition-transform duration-1000 ease-in-out md:w-1/3 ${translateClass}`}
-      >
-        <nav className="m-8 flex w-full flex-col gap-4">
-          <hr className="my-8 w-full border-2 border-white" />
-          <ul className="flex flex-col gap-4">
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#politics"
-                onClick={handleItemClick}
-              >
-                Política
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#world"
-                onClick={handleItemClick}
-              >
-                Mundo
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#business"
-                onClick={handleItemClick}
-              >
-                Negócios
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#technology"
-                onClick={handleItemClick}
-              >
-                Tecnologia
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#sports"
-                onClick={handleItemClick}
-              >
-                Esportes
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#entertainment"
-                onClick={handleItemClick}
-              >
-                Entretenimento
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#science"
-                onClick={handleItemClick}
-              >
-                Ciência
-              </a>
-            </li>
-            <li className="mb-4">
-              <a
-                className="text-4xl md:text-5xl font-medium text-white hover:underline"
-                href="#health"
-                onClick={handleItemClick}
-              >
-                Saúde
-              </a>
-            </li>
-          </ul>
-          <hr className="my-8 w-full border-2 border-white" />
-        </nav>
+    <div
+      className={`fixed inset-0 bg-white bg-opacity-90 backdrop-blur-lg transition-transform transform ${
+        isOpen ? 'translate-x-0' : 'translate-x-full'
+      } z-40`}
+    >
+      <div className="flex justify-end p-4">
+        <button
+          onClick={onClose}
+          className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            className="bi bi-x-lg"
+            viewBox="0 0 16 16"
+          >
+            <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 5.586l5.293-4.293a1 1 0 0 1 1.414 1.414L9.414 7l5.293 5.293a1 1 0 0 1-1.414 1.414L8 8.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+          </svg>
+        </button>
       </div>
-    </>
+      <div className="flex flex-col items-center space-y-6 py-10 text-xl font-medium">
+        <Link
+          to="/"
+          className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+          onClick={onClose}
+        >
+          Início
+        </Link>
+        <Link
+          to="/about"
+          className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+          onClick={onClose}
+        >
+          Todas as Notícias
+        </Link>
+        <Link
+          to="/services"
+          className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+          onClick={onClose}
+        >
+          Você Pode Gostar
+        </Link>
+        <Link
+          to="/contact"
+          className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+          onClick={onClose}
+        >
+          Contato
+        </Link>
+      </div>
+    </div>
   );
-}
+};
 
 export default Navigation;

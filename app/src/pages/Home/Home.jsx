@@ -15,22 +15,6 @@ export default function Home() {
       <Header />
       <Banner />
       <main className="flex-1">
-        <section className="relative">
-          <div className="w-full h-[400px]">
-            <img src="../assets/bg.svg" alt="Background" className="w-full h-full object-cover" />
-          </div>
-          <div className="absolute inset-0 flex flex-col items-start justify-center text-white text-left px-4">
-            <h2 className="text-4xl font-bold md:w-1/2">
-              Novo aplicativo de realidade aumentada promete revolucionar o turismo
-            </h2>
-            <p className="mt-4">
-              Levamos educação política a qualquer pessoa, em qualquer lugar, de forma fácil e gratuita, sempre com
-              respeito pela pluralidade de ideias.
-            </p>
-            <Button className="mt-6 bg-blue-600 md:w-1/6 hover:bg-blue-700">Inscrever-se (Gratis)</Button>
-          </div>
-        </section>
-        
         <LocalNews />
         
         <LikeContent />
@@ -38,7 +22,7 @@ export default function Home() {
         <Newsletter />
       </main>
       <Footer />
-      <Weather /> {/* Adicione esta linha */}
+      <Weather /> 
     </div>
   );
 }

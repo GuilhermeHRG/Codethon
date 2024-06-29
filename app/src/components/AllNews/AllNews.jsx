@@ -1,7 +1,7 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-// Lista de notícias atualizada
+// Exemplo de notícias; em um cenário real, você pode buscar esses dados de uma API
 const noticias = [
   {
     id: 1,
@@ -149,41 +149,40 @@ const noticias = [
   },
 ];
 
-export default function NewsDetails() {
-  const { id } = useParams();
-  const noticia = noticias.find((n) => n.id === parseInt(id));
-
-  if (!noticia) {
-    return <div className="p-4">Notícia não encontrada</div>;
-  }
-
+export default function AllNews() {
   return (
     <div className="px-4 py-6 md:px-6 lg:py-16 md:py-12">
       <div className="mb-4">
-        <Link to="/" className="text-white bg-blue-600 px-2 py-1 hover:bg-blue-700 rounded">
+        <Link
+          to="/"
+          className="text-white bg-blue-600 px-2 py-1 hover:bg-blue-700 rounded"
+        >
           {"<- Voltar"}
         </Link>
       </div>
-      <article className="prose prose-gray mx-auto dark:prose-invert">
-        <div className="space-y-2 not-prose">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl lg:leading-[3.5rem]">
-            {noticia.titulo}
-          </h1>
-          <p className="text-muted-foreground">
-            Por {noticia.autor}, {noticia.data}
-          </p>
-        </div>
-        <div className="flex flex-col lg:flex-row lg:items-start lg:space-x-6 mt-6">
-          <img
-            src={noticia.foto}
-            alt={noticia.titulo}
-            className="aspect-video overflow-hidden rounded-lg object-cover lg:w-1/2"
-          />
-          <p className="mt-4 lg:mt-0 lg:w-1/2">
-            {noticia.descricao}
-          </p>
-        </div>
-      </article>
+      <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl lg:leading-[3rem] mb-6">
+        Todas as Notícias
+      </h1>
+      <div className="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 lg:grid-cols-4 px-4 w-11/12">
+        {noticias.map((noticia) => (
+          <div
+            key={noticia.id}
+            className="bg-gray-300 rounded overflow-hidden cursor-pointer hover:opacity-75"
+          >
+            <Link to={`/noticia/${noticia.id}`}>
+              <img
+                src={noticia.foto}
+                alt={noticia.titulo}
+                className="w-full h-40 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold">{noticia.titulo}</h3>
+                <p className="text-sm text-gray-600">{noticia.data}</p>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
