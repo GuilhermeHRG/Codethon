@@ -1,7 +1,9 @@
+import React from 'react';
 import Button from "../../components/Button/Button";
 import NoticiasLocais from "../NoticiasLocais/NoticiasLocais";
 import ConteudoGostar from "../ConteudoGostar/ConteudoGostar";
 import Inscricao from "../Inscricao/Inscricao";
+import Weather from "./Weather"; // Adicione esta linha
 
 export default function Home() {
   return (
@@ -28,7 +30,7 @@ export default function Home() {
               Levamos educação política a qualquer pessoa, em qualquer lugar, de forma fácil e gratuita, sempre com
               respeito pela pluralidade de ideias.
             </p>
-            <Button className="mt-6 bg-blue-600 md:w-1/6 hover:bg-blue-700  ">Inscrever-se (Gratis)</Button>
+            <Button className="mt-6 bg-blue-600 md:w-1/6 hover:bg-blue-700">Inscrever-se (Gratis)</Button>
           </div>
         </section>
         <NoticiasLocais />
@@ -44,6 +46,7 @@ export default function Home() {
         </div>
         <p className="mt-4 text-sm">© 2024 Explore Vale do Ivaí. Todos os direitos reservados.</p>
       </footer>
+      <Weather /> {/* Adicione esta linha */}
     </div>
   );
 }
