@@ -1,0 +1,22 @@
+{
+  "name": "Explore Ivaí",
+  "short_name": "Explore Ivaí",
+  "description": "Seu Jornal Diário.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#21061B",
+  "theme_color": "#21061B",
+  "developer": {
+    "name": "Carlos Carvalho, Guilherme Guelere",
+    "url": "localhost:5173"
+  },
+
+  "icons": [
+    {
+      "src": "./icon-app.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
