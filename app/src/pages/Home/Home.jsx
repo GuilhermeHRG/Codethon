@@ -4,18 +4,18 @@ import NoticiasLocais from "../NoticiasLocais/NoticiasLocais";
 import ConteudoGostar from "../ConteudoGostar/ConteudoGostar";
 import Inscricao from "../Inscricao/Inscricao";
 import Weather from "./Weather"; // Adicione esta linha
+import Footer from '../../components/Footer/Footer';
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-[#3b82f6] text-white flex items-center justify-between px-4 py-2">
-        <div className="flex items-center">
+      <header className="bg-red-900 text-white flex items-center justify-between px-4 py-2">
+        <div className="flex items-center text-center">
           <button className="mr-4">
             <MenuIcon />
           </button>
           <h1 className="text-2xl font-bold">Explore Ivaí</h1>
         </div>
-        <input type="search" placeholder="O que você procura?" className="max-w-xs rounded p-1" />
       </header>
       <main className="flex-1">
         <section className="relative">
@@ -30,22 +30,14 @@ export default function Home() {
               Levamos educação política a qualquer pessoa, em qualquer lugar, de forma fácil e gratuita, sempre com
               respeito pela pluralidade de ideias.
             </p>
-            <Button className="mt-6 bg-blue-600 md:w-1/6 hover:bg-blue-700">Inscrever-se (Gratis)</Button>
+            <Button className="mt-6 bg-red-700 md:w-1/6 hover:bg-red-700">Inscrever-se (Gratis)</Button>
           </div>
         </section>
         <NoticiasLocais />
         <ConteudoGostar />
         <Inscricao />
       </main>
-      <footer className="bg-[#3b82f6] text-white py-8 text-center">
-        <h2 className="text-2xl font-bold">Explore vale do ivaí</h2>
-        <div className="mt-4">
-          <p>Av. Brasil, 1250</p>
-          <p>(43) 99999-9999</p>
-          <p>exploreivai@gmail.com</p>
-        </div>
-        <p className="mt-4 text-sm">© 2024 Explore Vale do Ivaí. Todos os direitos reservados.</p>
-      </footer>
+      <Footer/>
       <Weather /> {/* Adicione esta linha */}
     </div>
   );

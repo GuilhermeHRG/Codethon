@@ -7,7 +7,7 @@ export default function ConteudoGostar() {
         <h2 className="text-2xl font-bold">CONTEUDO QUE VOCÊ PODE GOSTAR</h2>
       </div>
       
-      <div className="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4 px-4 ">
+      <div className="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4 xl:px-4 max-sm:px-6  ">
         <div className="bg-white p-4 rounded shadow max-w-sm">
           <img src="../assets/noticia1.jpg" alt="Conteudo" className="w-full h-40 object-cover rounded" />
           <h3 className="mt-4 font-bold">O que foi o Diretas Já?</h3>

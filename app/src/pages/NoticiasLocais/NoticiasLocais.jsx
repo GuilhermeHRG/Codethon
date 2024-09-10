@@ -28,7 +28,6 @@ const noticias = [
     data: '26 de junho de 2024',
     foto: 'https://via.placeholder.com/600?text=Noticia+3',
   },
-  // Adicione mais notícias conforme necessário, até 12 notícias
   {
     id: 4,
     titulo: 'Estudo Revela os Benefícios do Exercício Regular',
@@ -130,7 +129,7 @@ export default function NoticiasLocais() {
         ))}
       </div>
       <div className="text-center mt-8">
-        <Button className="bg-blue-600">VER TODAS AS NOTICIAS</Button>
+        <Button className="bg-red-700">VER TODAS AS NOTICIAS</Button>
       </div>
     </section>
   );
